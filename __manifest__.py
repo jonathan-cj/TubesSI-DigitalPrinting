@@ -13,7 +13,8 @@
         'views/cats_trees.xml',
         'views/cats_menus.xml',
         'views/cats_forms.xml',
-        'views/index.xml'
+        'views/index.xml',
+        'views/pesan.xml',
     ],
     'demo': [
         'demo/demo.xml',

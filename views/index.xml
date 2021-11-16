@@ -31,7 +31,7 @@
                         <a class="nav-link active h-100" aria-current="page" href="#">Produk</a>
                     </li>
                     <li class="nav-item h-100">
-                        <a class="nav-link h-100" href="#">Request</a>
+                        <a class="nav-link h-100" href="/pesan">Request</a>
                     </li>
                     </ul> 
                 </div>
