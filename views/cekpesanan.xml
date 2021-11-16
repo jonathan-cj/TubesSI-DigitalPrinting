@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id='cekpesanan'>&lt;!DOCTYPE html&gt;
+        <xpath expr="//link[@rel='stylesheet']" position="after">
+            <link rel="stylesheet" href="/tubes_si/static/src/css/cekpesanan.css"/>
+        </xpath>
+        <title>Cek Pesanan</title>
+        <div class="cekpesananpage">
+            <div class="container">
+                <h2>Cek Pesanan</h2>
+                <div class="cekpesanan-input">
+                    <label for='id_pesanan' class='input-label'>Input Kode Pesanan</label>
+                    <form id='caripesanan-form' method='post' action=''>
+                        <div class="inputkode">
+                            <input class='caripesanan-input' type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <input class='caripesanan-input' type='text' name='id_pesanan' />
+                        </div>
+                        <input type='submit' value='Submit' class='btn btn-primary caripesanan-input' />
+                    </form>
+                </div>
+                <div class="cekpesanan-result">
+                    <small><em>Nanti Diganti</em></small>
+                    ID Pesanan: <t t-esc='pesanan'/>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>

@@ -15,6 +15,7 @@
         'views/cats_forms.xml',
         'views/index.xml',
         'views/pesan.xml',
+        'views/cekpesanan.xml',
     ],
     'demo': [
         'demo/demo.xml',
