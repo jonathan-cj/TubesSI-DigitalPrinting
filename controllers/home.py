@@ -18,3 +18,7 @@ class HomeController(http.Controller):
             })
         else:
             return http.request.render('tubes_si.cekpesanan')
+
+    @http.route('/detail', auth='public', website=True)
+    def detail(self, **kw):
+        return http.request.render('tubes_si.detail')
