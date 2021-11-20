@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api
 
+
 class Cat(models.Model):
     _name = 'cats.cat'
     _description = 'Deskripsi Kucing'
