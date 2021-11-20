@@ -7,12 +7,9 @@
     'author': "Tim G03",
     'category': 'Uncategorized',
     'version': '1.0',
-    'depends': ['base'],
+    'depends': ['website'],
     'data': [
         'security/ir.model.access.csv',
-        'views/cats_trees.xml',
-        'views/cats_menus.xml',
-        'views/cats_forms.xml',
         'views/index.xml',
         'views/pesan.xml',
         'views/cekpesanan.xml',
