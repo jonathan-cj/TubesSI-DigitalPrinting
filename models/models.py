@@ -12,6 +12,7 @@ class Pesanan(models.Model):
     nama_pemesan = fields.Char(string='Nama Pemesan')
     email_pemesan = fields.Char(string='Email Pemesan')
     no_hp_pemesan = fields.Char(string='Nomor Telepon Pemesan')
+    alamat_pemesan = fields.Char(string='Alamat Pemesan')
     jumlah_pesanan = fields.Integer(string='Jumlah Pesanan')
     deskripsi_pesanan = fields.Char(string='Deskripsi Pesanan')
     file_pesanan = fields.Image(string='File Pesanan')

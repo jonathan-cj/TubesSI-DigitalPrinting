@@ -13,6 +13,12 @@
                 
                 <h2 class='mb-5'>Input Detail Pesanan</h2>
                 <t t-esc='pesanan' />
+                <t t-if='save'>
+                    <div class="">
+                        Pesanan berhasil dibuat!
+                        ID Pesanan <t t-esc='save.id' />
+                    </div>
+                </t>
             
                 <div class="container border border-dark rounded py-4">
                     <div class="row justify-content-md-center">

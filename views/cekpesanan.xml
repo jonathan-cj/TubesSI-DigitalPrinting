@@ -21,10 +21,20 @@
                         <input type='submit' value='Cek' class='btn caripesanan-input' />
                     </form>
                 </div>
-                <div class="cekpesanan-result">
-                    <small><em>Nanti Diganti</em></small>
-                    ID Pesanan: <t t-esc='pesanan'/>
-                </div>
+
+                <t t-if='pesanan'>
+                    <div class="cekpesanan-result d-flex flex-column">
+                        <div class=""><small><em>Nanti Diganti</em></small></div>
+                        <div class="">ID Pesanan: <t t-esc='pesanan.id'/></div>
+                        <div class="">Nama Pemesan: <t t-esc='pesanan.nama_pemesan' /></div>
+                        <div class="">Status Pesanan: <t t-esc='pesanan.status' /></div>
+                    </div>
+                </t>
+                <t t-if='error'>
+                    <div class="alert alert-danger">
+                        <t t-esc='error' />
+                    </div>
+                </t>
                 
             </div>
             
