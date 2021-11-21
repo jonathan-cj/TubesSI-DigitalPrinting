@@ -5,9 +5,13 @@ class HomeController(http.Controller):
     def index(self, **kw):
         return http.request.render('tubes_si.sale_list')
 
-    @http.route('/pesan', auth='public',type='http', website=True)
-    def pesanan(self, **kw):
-        return http.request.render('tubes_si.pesan')
+    @http.route('/pesan', auth='public', website=True)
+    def pesanan(self, **post):
+        
+        result = post
+        return http.request.render('tubes_si.pesan', {
+            'pesanan': result
+        })
 
     @http.route('/cekpesanan', auth='public', website=True)
     def cekpesanan(self, **post):

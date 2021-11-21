@@ -8,7 +8,7 @@
         <t t-call='website.layout'>
             <t t-set='title'>Cek Pesanan</t>
 
-            <div class="cekpesananpage mt-5 mx-auto container d-flex flex-column">
+            <div class="cekpesananpage my-5 mx-auto container d-flex flex-column">
                 
                 <h2>Cek Pesanan</h2>
                 <div class="cekpesanan-input">
@@ -18,7 +18,7 @@
                             <input class='caripesanan-input' type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                             <input class='caripesanan-input' type='text' name='id_pesanan' />
                         </div>
-                        <input type='submit' value='Submit' class='btn caripesanan-input' />
+                        <input type='submit' value='Cek' class='btn caripesanan-input' />
                     </form>
                 </div>
                 <div class="cekpesanan-result">
