@@ -1,0 +1,13 @@
+<odoo>
+    <record id="action_digitalprinting" model="ir.actions.act_window">
+        <field name="name">Digital Printing</field>
+        <field name="res_model">tubes_si.digitalprinting</field>
+    </record>
+
+    <menuitem sequence="0" id="menu_digitalprinting" name="Digital Printing"/>
+    <menuitem id="menu_digitalprinting_content" parent="menu_digitalprinting"
+                name="Digital Printing Content"/>
+    <menuitem id="menu_digitalprinting_content_products"
+                parent="menu_digitalprinting_content"
+                action="action_digitalprinting"/>
+</odoo>
