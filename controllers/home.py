@@ -3,14 +3,20 @@ from odoo import http
 class HomeController(http.Controller):
     @http.route('/', auth='public', website=True)
     def index(self, **kw):
-        return http.request.render('tubes_si.sale_list')
+
+        # INI CUMA CONTOH!!!
+        # jenis_dp ini harusnya ambil dari database
+        jenis_dp = ['A1', 'A2', 'A3', 'Jonathan Christopher', 'Rais Vaza', 'Farhan Fadillah', 'Jeremia Axel']
+        return http.request.render('tubes_si.sale_list', {
+            'jenis_dp': jenis_dp # 'jenis_dp' ini harus sesuai sama <t t-foreach='jenis_dp' .....
+        })
 
     @http.route('/pesan', auth='public', website=True)
     def pesanan(self, **post):
-        
+
         result = post
         return http.request.render('tubes_si.pesan', {
-            'pesanan': result
+            'pesanan': result # 'pesanan' ini harus sesuai sama <t t-esc='pesanan' />
         })
 
     @http.route('/cekpesanan', auth='public', website=True)

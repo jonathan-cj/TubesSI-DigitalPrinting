@@ -9,8 +9,18 @@
             <div class="indexpage mt-5 container d-flex flex-column mx-auto">
             
                 <h2 class="mx-auto">Digital Printing</h2>
-                <div class="row justify-content-center" style="color: #EEEEEE;">
+
+                <div class="daftar-dp d-flex flex-column">
+                    <t t-foreach='jenis_dp' t-as='dp' class='d-flex flex-column'>
+                        <div>
+                            <t t-esc='dp' />
+                        </div>
+                    </t>
+                </div>
                 
+                <div class="row justify-content-center" style="color: #EEEEEE;">
+
+
                     <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
                     <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
                     <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
