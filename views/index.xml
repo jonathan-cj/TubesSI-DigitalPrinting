@@ -1,98 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="sale_list" name="index">&lt;!DOCTYPE html&gt;
-        <html>
-            <head>
-                <title>Latihan Controller Odoo</title>
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-                <style>
-                .shadow{ 
-                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                }
-
-                .nav-item a {
-                    color: #EEEEEE;
-                }
-
-                .active {
-                    background-color: #BC8CF2;
-                    color: #000000 !important;
-                }
-                </style>
-            </head>
-            <body style="overflow-x: hidden;">
-                <div class="row" style="padding: 0px 20px; background-color: #1F1D36;">
-                <div class="col-6">
-                    <h2 style="color: whitesmoke;">Digital Printing</h2>
-                </div>
-                <div class="col">
-                    <ul class="nav justify-content-end h-100">
-                    <li class="nav-item h-100">
-                        <a class="nav-link active h-100" aria-current="page" href="/cekpesanan/">Cek Pesanan</a>
-                    </li>
-                    <li class="nav-item h-100">
-                        <a class="nav-link active h-100" aria-current="page" href="#">Produk</a>
-                    </li>
-                    <li class="nav-item h-100">
-                        <a class="nav-link h-100" href="/pesan">Request</a>
-                    </li>
-                    </ul> 
-                </div>
-                </div>
-                <div style="height: 30px;"></div>
-                <div class="container">
-                    <div class="row justify-content-center" style="color: #EEEEEE;">
-                        <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
-                        <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
-                        <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
-                        <h5 style="text-align: center;">Rp. 10000</h5>
-                        <p style="text-align: center;">Ini ceritanya produk pertama</p>
-                        </div>
-                        <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
-                        <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
-                        <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
-                        <h5 style="text-align: center;">Rp. 10000</h5>
-                        <p style="text-align: center;">Ini ceritanya produk pertama</p>
-                        </div>
-                        <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
-                        <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
-                        <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
-                        <h5 style="text-align: center;">Rp. 10000</h5>
-                        <p style="text-align: center;">Ini ceritanya produk pertama</p>
-                        </div>
-                        <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
-                        <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
-                        <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
-                        <h5 style="text-align: center;">Rp. 10000</h5>
-                        <p style="text-align: center;">Ini ceritanya produk pertama</p>
-                        </div>
-                        <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
-                        <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
-                        <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
-                        <h5 style="text-align: center;">Rp. 10000</h5>
-                        <p style="text-align: center;">Ini ceritanya produk pertama</p>
-                        </div>
-                        <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
-                        <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
-                        <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
-                        <h5 style="text-align: center;">Rp. 10000</h5>
-                        <p style="text-align: center;">Ini ceritanya produk pertama</p>
-                        </div>
-                        <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
-                        <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
-                        <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
-                        <h5 style="text-align: center;">Rp. 10000</h5>
-                        <p style="text-align: center;">Ini ceritanya produk pertama</p>
-                        </div>
-                        <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
-                        <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
-                        <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
-                        <h5 style="text-align: center;">Rp. 10000</h5>
-                        <p style="text-align: center;">Ini ceritanya produk pertama</p>
-                        </div>
+        <xpath expr="//link[@rel='stylesheet']" position="after">
+            <link rel="stylesheet" href="/tubes_si/static/src/css/index.css"/>
+        </xpath>
+        <t t-call='website.layout'>
+            <t t-set='title'>Index</t>
+            <div class="indexpage mt-5 container d-flex flex-column mx-auto">
+            
+                <h2 class="mx-auto">Digital Printing</h2>
+                <div class="row justify-content-center" style="color: #EEEEEE;">
+                
+                    <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
+                    <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
+                    <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
+                    <h5 style="text-align: center;">Rp. 10000</h5>
+                    <p style="text-align: center;">Ini ceritanya produk pertama</p>
+                    </div>
+                    <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
+                    <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
+                    <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
+                    <h5 style="text-align: center;">Rp. 10000</h5>
+                    <p style="text-align: center;">Ini ceritanya produk pertama</p>
+                    </div>
+                    <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
+                    <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
+                    <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
+                    <h5 style="text-align: center;">Rp. 10000</h5>
+                    <p style="text-align: center;">Ini ceritanya produk pertama</p>
+                    </div>
+                    <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
+                    <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
+                    <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
+                    <h5 style="text-align: center;">Rp. 10000</h5>
+                    <p style="text-align: center;">Ini ceritanya produk pertama</p>
+                    </div>
+                    <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
+                    <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
+                    <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
+                    <h5 style="text-align: center;">Rp. 10000</h5>
+                    <p style="text-align: center;">Ini ceritanya produk pertama</p>
+                    </div>
+                    <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
+                    <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
+                    <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
+                    <h5 style="text-align: center;">Rp. 10000</h5>
+                    <p style="text-align: center;">Ini ceritanya produk pertama</p>
+                    </div>
+                    <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
+                    <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
+                    <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
+                    <h5 style="text-align: center;">Rp. 10000</h5>
+                    <p style="text-align: center;">Ini ceritanya produk pertama</p>
+                    </div>
+                    <div class="col-3 flex-row shadow" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
+                    <img src="../assets/logo.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
+                    <h4 style="text-align: center; margin-top: 5px;">Produk 1</h4>
+                    <h5 style="text-align: center;">Rp. 10000</h5>
+                    <p style="text-align: center;">Ini ceritanya produk pertama</p>
                     </div>
                 </div>
-            </body>
-            </html>
+                
+            </div>
+        </t>
     </template>
 </odoo>

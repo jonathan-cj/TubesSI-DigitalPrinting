@@ -13,8 +13,14 @@ class HomeController(http.Controller):
     def cekpesanan(self, **post):
         if 'id_pesanan' in post: 
             id_pesanan = post.get('id_pesanan')
+            result = ( http.request.env["tubes_si.pesanan"].sudo().search([("id_pesanan", "=", id_pesanan)]) )
+            if len(result) == 0:
+                result = 'Pesanan tidak ditemukan'
+            else:
+                result = result.id_pesanan
+
             return http.request.render('tubes_si.cekpesanan',{
-                'pesanan': id_pesanan
+                'pesanan': result
             })
         else:
             return http.request.render('tubes_si.cekpesanan')
