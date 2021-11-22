@@ -24,9 +24,11 @@
 
                 <t t-if='pesanan'>
                     <div class="p-3 cekpesanan-result d-flex flex-column border border-dark rounded">
+                        
                         <div class="">ID Pesanan: <t t-esc='pesanan.id'/></div>
                         <div class="">Nama Pemesan: <t t-esc='pesanan.nama_pemesan' /></div>
                         <div class="">Status Pesanan: <t t-esc='pesanan.status' /></div>
+                        <div class="">Waktu Pesanan: <t t-esc='pesanan.waktu_pesanan' /></div>
                     </div>
                 </t>
                 <t t-if='error'>
