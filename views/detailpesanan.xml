@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="detailpesanan" name="detailpesanan">&lt;!DOCTYPE html&gt;
+    <t t-call='website.layout'>
+      <t t-set='title'>Detail Produk Digital Printing</t>
+      <div class="row" style="padding: 0px 20px; background-color: #1F1D36;">
+        </div>
+        <div class="container row shadow" style="margin: 100px auto; border: 1px solid black; border-radius: 5px; height: 300px; width: 1000px;">
+          <img class="col-auto" src="https://maxipro.co.id/wp-content/uploads/2020/07/79.-Digital-Printing-Metode-Percetakan-Masa-Kini.jpg" style="width: 200px; height: 260px; border: 1px solid black; border-radius: 3px; margin: 15px 10px; float: left; vertical-align: baseline; object-fit: cover; padding: 0px;"/>
+          <div class="col pt-4">
+            <form class="row pl-4" method="post" action=''>
+              <input class='addproduct-input' type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+              <t t-if="pesanan.status == 'In Progress'">
+                <div class="rounded-circle col-auto align-self-center" style="background-color: #EEEE00; width: 30px; height: 30px;"></div>
+                <div class="col-auto" style="width: 10px"></div>
+                <select class="col-auto" name="status" id="status" value="In Progress">
+                  <option value="In Progress">In Progress</option>
+                  <option value="Delivered">Delivered</option>
+                </select>
+                <div class="col-auto" style="width: 10px"></div>
+                <input type="submit" class="btn btn-primary col-auto" value="Confirm" />
+              </t>
+              <t t-else="">
+                <div class="rounded-circle col-auto align-self-center" style="background-color: #00FF00; width: 30px; height: 30px;"></div>
+                <div class="col-auto" style="width: 10px"></div>
+                <select class="col-auto" name="status" id="status" value="Delivered">
+                  <option value="Delivered">Delivered</option>
+                  <option value="In Progress">In Progress</option>
+                </select>
+                <div class="col-auto" style="width: 10px"></div>
+                <input type="submit" class="btn btn-primary col-auto" value="Confirm" />
+              </t>
+            </form>
+            <h1 style="text-align: left; margin-top: 5px;"><t t-esc='produk.nama'></t></h1>
+            <h2 style="text-align: left;"><t t-esc='produk.harga'></t></h2>
+            <p style="text-align: left; margin-top: 5px">Pemesan: <t t-esc='pesanan.nama_pemesan'></t></p>
+            <p style="text-align: left; margin-top: 5px">Alamat: <t t-esc='pesanan.alamat_pemesan'></t></p>
+            <p style="text-align: left; margin-top: 5px">No. HP: <t t-esc='pesanan.no_hp_pemesan'></t></p>
+          </div>
+        </div>
+    </t>
+  </template>
+</odoo>

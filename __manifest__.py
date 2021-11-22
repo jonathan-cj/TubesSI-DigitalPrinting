@@ -17,7 +17,8 @@
         'views/daftarpesanan.xml',
         'views/detail.xml',
         'views/addproduct.xml',
-        'views/editproduct.xml'
+        'views/editproduct.xml',
+        'views/detailpesanan.xml'
     ],
     'demo': [
         'demo/demo.xml',

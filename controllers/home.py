@@ -56,7 +56,7 @@ class HomeController(http.Controller):
             result['deskripsi_pesanan'] = post.get('catatan')
             bukti_pembayaran = post.get('bukti')
             result['bukti_pembayaran'] = bukti_pembayaran.read()
-            result['status'] = 'Dalam Proses Pencetakan'
+            result['status'] = 'In Progress'
             result['id_jenis'] = id_jenis
 
             save = http.request.env['tubes_si.pesanan'].sudo().create(result)
@@ -100,6 +100,24 @@ class HomeController(http.Controller):
                 return http.request.render('tubes_si.cekpesanan')
         else:
             return http.request.render('tubes_si.daftarpesanan')
+
+    @http.route('/pesanan/detail/<id>', auth='public', website=True)
+    def pesanan_detail(self, id, **post):
+        global is_admin
+        pesanan = http.request.env["tubes_si.pesanan"].sudo().search([("id", "=", id)])
+        produk = pesanan['id_jenis']
+
+        if (len(post) > 0):
+            result = {}
+            result['status'] = post.get('status')
+
+            pesanan.sudo().update(result)
+
+        return http.request.render('tubes_si.detailpesanan', {
+            'pesanan': pesanan,
+            'produk': produk,
+            'is_admin': is_admin
+        })
 
     @http.route('/detail/<id_jenis>', auth='public', website=True)
     def detail(self, id_jenis, **kw):
