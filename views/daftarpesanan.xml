@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id='daftarpesanan'>&lt;!DOCTYPE html&gt;
+        <xpath expr="//link[@rel='stylesheet']" position="after">
+            <link rel="stylesheet" href="/tubes_si/static/src/css/daftarpesanan.css"/>
+        </xpath>
+        <t t-call='website.layout'>
+            <t t-set='title'>Daftar Pesanan</t>
+
+            <div class="daftarpesananpage my-5 mx-auto container d-flex flex-column">
+                <h2>Daftar Pesanan</h2>
+                <h1><em><strong>BIKIN DI SINI ROY!</strong></em></h1>
+            </div>
+        </t>
+    </template>
+
+</odoo>

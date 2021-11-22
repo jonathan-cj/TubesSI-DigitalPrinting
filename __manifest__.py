@@ -14,6 +14,7 @@
         'views/list.xml',
         'views/pesan.xml',
         'views/cekpesanan.xml',
+        'views/daftarpesanan.xml',
         'views/detail.xml',
         'views/addproduct.xml'
     ],

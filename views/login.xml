@@ -24,10 +24,10 @@
                     </div>
                 </div>
                 
-                <div class="col d-flex flex-column justify-content-start align-items-center border-left">
+                <div class="col-6 d-flex flex-column justify-content-start align-items-center border-left">
                     <h3 class="mx-auto">Masuk sebagai pengguna</h3>
 
-                    <a t-attf-href="/daftar" style="color: blue;">
+                    <a t-attf-href="/daftar" class="btn btn-primary">
                         Lanjutkan
                     </a>
                 </div>

@@ -21,7 +21,7 @@
             <div class="indexpage mt-5 container d-flex flex-column mx-auto">
 
                 <div class="row">
-                    <h2 class="col-auto">Digital Printing</h2>
+                    <h2 class="col-auto text-center w-100">Digital Printing</h2>
                     <t t-if="is_admin"> 
                         <div class="col-auto align-self-center">
                             <a t-attf-href="/" class="btn btn-success py-1 px-2" style="border-radius: 50px">
