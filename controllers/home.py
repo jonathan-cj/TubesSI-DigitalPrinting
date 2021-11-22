@@ -6,7 +6,7 @@ class HomeController(http.Controller):
 
         # INI CUMA CONTOH!!!
         # jenis_dp ini harusnya ambil dari database
-        jenis_dp = ['A1', 'A2', 'A3', 'Jonathan Christopher', 'Rais Vaza', 'Farhan Fadillah', 'Jeremia Axel']
+        jenis_dp = http.request.env['tubes_si.digitalprinting'].sudo().search([])
         return http.request.render('tubes_si.sale_list', {
             'jenis_dp': jenis_dp # 'jenis_dp' ini harus sesuai sama <t t-foreach='jenis_dp' .....
         })
