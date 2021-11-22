@@ -72,6 +72,8 @@ class HomeController(http.Controller):
                         return http.request.render('tubes_si.cekpesanan',{
                             'pesanan': result
                         })
+                    else:
+                        error = 'Pesanan tidak ditemukan'
                 return http.request.render('tubes_si.cekpesanan', {
                     'error': error
                 })
