@@ -80,3 +80,10 @@ class HomeController(http.Controller):
         return http.request.render('tubes_si.detail', {
             'jenis': result
         })
+    
+    @http.route('/addproduct', auth='public', website=True) # mungkin authnya harus diubah jadi user?
+    def addproduct(self, **post):
+        id_jenis = 0 # harus ambil count dari database terus increment +1
+        return http.request.render('tubes_si.addproduct', {
+            'id_jenis': id_jenis
+        })
