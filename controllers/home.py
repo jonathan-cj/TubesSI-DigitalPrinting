@@ -1,8 +1,27 @@
 from odoo import http
 
+ADMIN_KEY = 'admin'
+
 class HomeController(http.Controller):
+    is_admin = False
+
     @http.route('/', auth='public', website=True)
     def index(self, **kw):
+
+        return http.request.render('tubes_si.login')
+
+    @http.route('/login', auth='public', website=True)
+    def index(self, **post):
+        if len(post) > 0:
+            code = post.get('kode')
+
+            if code == ADMIN_KEY:
+                self.is_admin = True
+                return http.request.render('tubes_si.sale_list', {'is_admin': True})
+        return http.request.render('tubes_si.sale_list')
+
+    @http.route('/daftar', auth='public', website=True)
+    def daftar(self, **kw):
 
         # INI CUMA CONTOH!!!
         # jenis_dp ini harusnya ambil dari database

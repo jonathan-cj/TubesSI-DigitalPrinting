@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="login" name="index">&lt;!DOCTYPE html&gt;
+        <xpath expr="//link[@rel='stylesheet']" position="after">
+            <link rel="stylesheet" href="/tubes_si/static/src/css/index.css"/>
+        </xpath>
+        <t t-call='website.layout'>
+            <t t-set='title'>Login</t>
+                <div class="indexpage mt-5 d-flex flex-row mx-auto row"> 
+                <t t-esc="post"></t>
+
+                <div class="col-6 flex-row">
+                    <h3 class="mx-auto">Masuk sebagai admin</h3>
+
+                    <div style="color: #EEEEEE;">
+
+                        <form id='login-form' method='post' action='/login'>
+                            <div>
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <input type='password' name='kode' />
+                            </div>
+                            <div style="height: 10px;"></div>
+                            <input type='submit' value='Login' class='btn btn-secondary' />
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col flex-row mx-auto">
+                    <h3 class="mx-auto">Masuk sebagai pengguna</h3>
+
+                    <a t-attf-href="/daftar" style="color: blue;">
+                        Lanjutkan
+                    </a>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

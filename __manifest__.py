@@ -10,10 +10,12 @@
     'depends': ['website'],
     'data': [
         'security/ir.model.access.csv',
-        'views/index.xml',
+        'views/login.xml',
+        'views/list.xml',
         'views/pesan.xml',
         'views/cekpesanan.xml',
         'views/detail.xml',
+        'views/addproduct.xml'
     ],
     'demo': [
         'demo/demo.xml',

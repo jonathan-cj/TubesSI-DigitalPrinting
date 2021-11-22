@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_list" name="daftar">&lt;!DOCTYPE html&gt;
+        <xpath expr="//link[@rel='stylesheet']" position="after">
+            <link rel="stylesheet" href="/tubes_si/static/src/css/index.css"/>
+        </xpath>
+        <style>
+            .produk {
+                text-decoration: none!important;
+                color: #EEEEEE;
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.19);
+            }
+
+            .produk:hover {
+                color: #FFFFFF!important;
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+        </style>
+        <t t-call='website.layout'>
+            <t t-set='title'>Daftar Digital Printing</t>
+            <div class="indexpage mt-5 container d-flex flex-column mx-auto">
+            
+                <h2 class="mx-auto">Digital Printing</h2>
+
+                <div class="row justify-content-center" style="color: #EEEEEE;">
+
+                    <t t-foreach='jenis_dp' t-as='dp' class='d-flex flex-column'>
+                        <a  class="col-3 flex-row produk" t-attf-href="/detail/{{ dp.id_jenis }}" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
+                            <img src="https://maxipro.co.id/wp-content/uploads/2020/07/79.-Digital-Printing-Metode-Percetakan-Masa-Kini.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
+                            <h4 style="text-align: center; margin-top: 5px;"><t t-esc="dp.nama"/></h4>
+                            <h5 style="text-align: center;"><t t-esc="dp.harga"/></h5>
+                            <p style="text-align: center;"><t t-esc="dp.deskripsi"/></p>
+                        </a>
+                    </t>
+                </div>
+                
+            </div>
+        </t>
+    </template>
+</odoo>
