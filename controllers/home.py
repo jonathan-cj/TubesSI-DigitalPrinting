@@ -3,35 +3,29 @@ from odoo import http
 ADMIN_KEY = 'admin'
 
 class HomeController(http.Controller):
-    is_admin = False
 
     @http.route('/', auth='public', website=True)
     def index(self, **kw):
+        self.is_admin = False
         return http.request.render('tubes_si.login')
 
-    @http.route('/login', auth='public', website=True)
-    def login(self, **post):
+    @http.route('/daftar', auth='public', website=True)
+    def daftar(self, **post):
+
+        jenis_dp = http.request.env['tubes_si.digitalprinting'].sudo().search([])
+
         if len(post) > 0:
             code = post.get('kode')
 
             if code == ADMIN_KEY:
                 self.is_admin = True
-                jenis_dp = http.request.env['tubes_si.digitalprinting'].sudo().search([])
                 return http.request.render('tubes_si.sale_list', {
                     'is_admin': True, 
                     'jenis_dp': jenis_dp,
                 })
-
-        return http.request.render('tubes_si.sale_list')
-
-    @http.route('/daftar', auth='public', website=True)
-    def daftar(self, **kw):
-
-        # INI CUMA CONTOH!!!
-        # jenis_dp ini harusnya ambil dari database
-        jenis_dp = http.request.env['tubes_si.digitalprinting'].sudo().search([])
+        
         return http.request.render('tubes_si.sale_list', {
-            'jenis_dp': jenis_dp # 'jenis_dp' ini harus sesuai sama <t t-foreach='jenis_dp' .....
+            'jenis_dp': jenis_dp
         })
 
     @http.route('/pesan', auth='public', website=True)
@@ -82,5 +76,6 @@ class HomeController(http.Controller):
             result = 'Jenis produk tidak ditemukan'
         
         return http.request.render('tubes_si.detail', {
-            'jenis': result
+            'jenis': result,
+            'is_admin': self.is_admin
         })

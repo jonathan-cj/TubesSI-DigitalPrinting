@@ -8,12 +8,12 @@
             <t t-set='title'>Login</t>
             <div class="indexpage mt-5 d-flex flex-row mx-auto row"> 
 
-                <div class="col-6 flex-row">
+                <div class="col-6 d-flex flex-column justify-content-start align-items-center">
                     <h3 class="mx-auto">Masuk sebagai admin</h3>
 
                     <div style="color: #EEEEEE;">
 
-                        <form id='login-form' method='post' action='/login'>
+                        <form id='login-form' method='post' action='/daftar'>
                             <div>
                                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                 <input type='password' name='kode' />
@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 
-                <div class="col flex-row mx-auto">
+                <div class="col d-flex flex-column justify-content-start align-items-center border-left">
                     <h3 class="mx-auto">Masuk sebagai pengguna</h3>
 
                     <a t-attf-href="/daftar" style="color: blue;">
