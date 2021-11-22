@@ -2,16 +2,34 @@ from odoo import http
 import base64
 
 ADMIN_KEY = 'admin'
-is_admin = False
+is_admin = None
 
 class HomeController(http.Controller):
     
 
     @http.route('/', auth='public', website=True)
-    def index(self, **kw):
+    def index(self, **post):
         global is_admin
-        is_admin = False
-        return http.request.render('tubes_si.login')
+        if is_admin is not None:
+            return http.request.redirect('/daftar')
+        else:
+            if len(post) > 0:
+                code = post.get('kode')
+
+                if code == ADMIN_KEY:
+                    is_admin = True
+                    return http.request.redirect('/daftar')
+                
+                    
+            return http.request.render('tubes_si.login', {
+                'debug': post
+            })
+
+    @http.route('/logout', auth='public', website=True)
+    def logout(self, **kw):
+        global is_admin
+        is_admin = None
+        return http.request.redirect('/')
 
     @http.route('/daftar', auth='public', website=True)
     def daftar(self, **post):
@@ -19,12 +37,6 @@ class HomeController(http.Controller):
 
         jenis_dp = http.request.env['tubes_si.digitalprinting'].sudo().search([])
 
-        if len(post) > 0:
-            code = post.get('kode')
-
-            if code == ADMIN_KEY:
-                is_admin = True
-        
         return http.request.render('tubes_si.sale_list', {
             'is_admin': is_admin,
             'jenis_dp': jenis_dp,

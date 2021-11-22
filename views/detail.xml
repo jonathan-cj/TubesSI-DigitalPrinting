@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <template id="detail" name="detail">&lt;!DOCTYPE html&gt;
-    <xpath expr="//link[@rel='stylesheet']" position="after">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-      <link rel="stylesheet" href="/tubes_si/static/src/css/detail.css"/>
-    </xpath>
     <t t-call='website.layout'>
       <t t-set='title'>Detail Produk Digital Printing</t>
       <div class="row" style="padding: 0px 20px; background-color: #1F1D36;">

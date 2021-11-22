@@ -2,9 +2,6 @@
 
 <odoo>
     <template id='editproduct'>&lt;!DOCTYPE html&gt;
-        <xpath expr="//link[@rel='stylesheet']" position="after">
-            <link rel="stylesheet" href="/tubes_si/static/src/css/addproduct.css"/>
-        </xpath>
         <t t-call="website.layout">
             <t t-set="title">Edit Produk</t>
 

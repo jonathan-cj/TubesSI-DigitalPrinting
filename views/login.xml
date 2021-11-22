@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="login" name="login">&lt;!DOCTYPE html&gt;
-        <xpath expr="//link[@rel='stylesheet']" position="after">
-            <link rel="stylesheet" href="/tubes_si/static/src/css/index.css"/>
-        </xpath>
         <t t-call='website.layout'>
             <t t-set='title'>Login</t>
             <div class="indexpage mt-5 d-flex flex-row mx-auto row"> 
@@ -13,7 +10,7 @@
 
                     <div style="color: #EEEEEE;">
 
-                        <form id='login-form' method='post' action='/daftar'>
+                        <form id='login-form' method='post' action=''>
                             <div>
                                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                 <input type='password' name='kode' />
