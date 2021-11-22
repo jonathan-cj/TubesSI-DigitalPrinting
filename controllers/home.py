@@ -100,3 +100,35 @@ class HomeController(http.Controller):
             'jenis': result,
             'is_admin': is_admin
         })
+
+    @http.route('/addproduct', auth='public', website=True) # mungkin authnya harus diubah jadi user?
+    def addproduct(self, **post):
+
+        if 'harga' in post:
+            result = {}
+            result['nama'] = post.get('nama')
+            result['harga'] = post.get('harga')
+            result['deskripsi'] = post.get('deskripsi')
+            isNamaValid = len(result['nama']) != 0
+            isHargaValid = len(result['harga']) != 0
+            isDeskripsiValid = len(result['deskripsi']) != 0
+            valid = isNamaValid and isHargaValid and isDeskripsiValid
+
+            produk = (http.request.env["tubes_si.digitalprinting"])
+            if len(produk) == 0:
+                result['id_jenis'] = 1
+            else:
+                result['id_jenis'] = len(produk) + 1
+
+            if valid:
+                save = http.request.env['tubes_si.digitalprinting'].sudo().create(result)
+                pesan = result['nama'] + 'berhasil ditambahkan!'
+            else:
+                pesan = result['nama'] + 'gagal ditambahkan!'
+
+            return http.request.render('tubes_si.addproduct', {
+                'pesan': pesan
+                })
+        else:
+            return http.request.render('tubes_si.addproduct')
+            

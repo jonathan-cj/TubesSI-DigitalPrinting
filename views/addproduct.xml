@@ -1,13 +1,34 @@
-<odoo>
-    <record id="action_digitalprinting" model="ir.actions.act_window">
-        <field name="name">Digital Printing</field>
-        <field name="res_model">tubes_si.digitalprinting</field>
-    </record>
+<?xml version="1.0" encoding="utf-8"?>
 
-    <menuitem sequence="0" id="menu_digitalprinting" name="Digital Printing"/>
-    <menuitem id="menu_digitalprinting_content" parent="menu_digitalprinting"
-                name="Digital Printing Content"/>
-    <menuitem id="menu_digitalprinting_content_products"
-                parent="menu_digitalprinting_content"
-                action="action_digitalprinting"/>
+<odoo>
+    <template id='addproduct'>&lt;!DOCTYPE html&gt;
+        <xpath expr="//link[@rel='stylesheet']" position="after">
+            <link rel="stylesheet" href="/tubes_si/static/src/css/addproduct.css"/>
+        </xpath>
+        <t t-call="website.layout">
+            <t t-set="title">Tambah Produk</t>
+
+            <div class="">
+                
+                <h2 style='text-align: center; margin-top: 20px;'>Tambah Produk Baru</h2>
+                <form id='caripesanan-form' class="addproduct-input" style="width: fit-content; height: fit-content; margin: 20px auto; padding: 20px 20px; border: 1px solid black; border-radius: 5px;" method='post' action=''>
+                    <input class='addproduct-input' type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <label for='nama'>Nama produk: </label><br></br>
+                    <input type='text' name='nama' style='width: 500px;'/><br></br><br></br>
+                    <label for='harga'>Harga: </label><br></br>
+                    <input type='text' name='harga' style='width: 500px;'></input><br></br><br></br>
+                    <label for='deskripsi'>Deskripsi: </label><br></br>
+                    <input type='text' name='deskripsi' style='width: 500px; height: 100px;'></input><br></br><br></br>
+                    <input type='submit' value='Tambah' class='btn' style='margin-left: 400px; border: solid black 1px; border-radius: 5px;'/>
+                    <t t-if='pesan'>
+                        <p>
+                            <t t-esc='pesan' />
+                        </p>
+                    </t>
+                </form>
+                
+            </div>
+        </t>
+    </template>
+
 </odoo>
