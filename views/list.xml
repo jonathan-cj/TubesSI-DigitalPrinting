@@ -19,8 +19,17 @@
         <t t-call='website.layout'>
             <t t-set='title'>Daftar Digital Printing</t>
             <div class="indexpage mt-5 container d-flex flex-column mx-auto">
-            
-                <h2 class="mx-auto">Digital Printing</h2>
+
+                <div class="row">
+                    <h2 class="col-auto text-center w-100">Digital Printing</h2>
+                    <t t-if="is_admin"> 
+                        <div class="col-auto align-self-center">
+                            <a t-attf-href="/" class="btn btn-success py-1 px-2" style="border-radius: 50px">
+                                +
+                            </a>
+                        </div>
+                    </t>
+                </div>
 
                 <div class="row justify-content-center" style="color: #EEEEEE;">
 

@@ -1,37 +1,37 @@
 from odoo import http
 
 ADMIN_KEY = 'admin'
+is_admin = False
 
 class HomeController(http.Controller):
-    is_admin = False
+    
 
     @http.route('/', auth='public', website=True)
     def index(self, **kw):
-
+        global is_admin
+        is_admin = False
         return http.request.render('tubes_si.login')
 
-    @http.route('/login', auth='public', website=True)
-    def index(self, **post):
+    @http.route('/daftar', auth='public', website=True)
+    def daftar(self, **post):
+        global is_admin
+
+        jenis_dp = http.request.env['tubes_si.digitalprinting'].sudo().search([])
+
         if len(post) > 0:
             code = post.get('kode')
 
             if code == ADMIN_KEY:
-                self.is_admin = True
-                return http.request.render('tubes_si.sale_list', {'is_admin': True})
-        return http.request.render('tubes_si.sale_list')
-
-    @http.route('/daftar', auth='public', website=True)
-    def daftar(self, **kw):
-
-        # INI CUMA CONTOH!!!
-        # jenis_dp ini harusnya ambil dari database
-        jenis_dp = http.request.env['tubes_si.digitalprinting'].sudo().search([])
+                is_admin = True
+        
         return http.request.render('tubes_si.sale_list', {
-            'jenis_dp': jenis_dp # 'jenis_dp' ini harus sesuai sama <t t-foreach='jenis_dp' .....
+            'is_admin': is_admin,
+            'jenis_dp': jenis_dp,
         })
 
     @http.route('/pesan', auth='public', website=True)
     def pesanan(self, **post):
+        global is_admin
         result = {}
         if len(post) != 0:
             result['nama_pemesan'] = post.get('nama')
@@ -45,6 +45,7 @@ class HomeController(http.Controller):
             save = http.request.env['tubes_si.pesanan'].sudo().create(result)
 
             return http.request.render('tubes_si.pesan', {
+                'is_admin': is_admin,
                 'pesanan': result, # 'pesanan' ini harus sesuai sama <t t-esc='pesanan' />
                 'save': save
             })
@@ -53,37 +54,73 @@ class HomeController(http.Controller):
 
     @http.route('/cekpesanan', auth='public', website=True)
     def cekpesanan(self, **post):
-        if 'id_pesanan' in post: 
-            
-            id_pesanan = post.get('id_pesanan')
-            try:
-                int(id_pesanan)
-                result = ( http.request.env["tubes_si.pesanan"].sudo().search([("id", "=", id_pesanan)]) )
-                if len(result) == 0: result = 'Pesanan tidak ditemukan'
-                return http.request.render('tubes_si.cekpesanan',{
-                    'pesanan': result
+        global is_admin
+        if not is_admin:
+            if 'id_pesanan' in post: 
+                error = False
+                
+                id_pesanan = post.get('id_pesanan')
+                try:
+                    int(id_pesanan)
+                except ValueError: 
+                    error = 'Pesanan tidak ditemukan'
+
+
+                if not error:
+                    result = ( http.request.env["tubes_si.pesanan"].sudo().search([("id", "=", id_pesanan)]) )                
+                    if len(result) != 0:
+                        return http.request.render('tubes_si.cekpesanan',{
+                            'pesanan': result
+                        })
+                return http.request.render('tubes_si.cekpesanan', {
+                    'error': error
                 })
 
-            except:            
-                return http.request.render('tubes_si.cekpesanan', {
-                    'error': "ID Pesanan harus angka"
-                })
+            else:
+                return http.request.render('tubes_si.cekpesanan')
         else:
-            return http.request.render('tubes_si.cekpesanan')
+            return http.request.render('tubes_si.daftarpesanan')
 
     @http.route('/detail/<id_jenis>', auth='public', website=True)
     def detail(self, id_jenis, **kw):
+        global is_admin
         result = ( http.request.env["tubes_si.digitalprinting"].sudo().search([("id_jenis", "=", id_jenis)]) )
         if len(result) == 0:
             result = 'Jenis produk tidak ditemukan'
         
         return http.request.render('tubes_si.detail', {
-            'jenis': result
+            'jenis': result,
+            'is_admin': is_admin
         })
-    
+
     @http.route('/addproduct', auth='public', website=True) # mungkin authnya harus diubah jadi user?
     def addproduct(self, **post):
-        id_jenis = 0 # harus ambil count dari database terus increment +1
-        return http.request.render('tubes_si.addproduct', {
-            'id_jenis': id_jenis
-        })
+
+        if 'harga' in post:
+            result = {}
+            result['nama'] = post.get('nama')
+            result['harga'] = post.get('harga')
+            result['deskripsi'] = post.get('deskripsi')
+            isNamaValid = len(result['nama']) != 0
+            isHargaValid = len(result['harga']) != 0
+            isDeskripsiValid = len(result['deskripsi']) != 0
+            valid = isNamaValid and isHargaValid and isDeskripsiValid
+
+            produk = (http.request.env["tubes_si.digitalprinting"])
+            if len(produk) == 0:
+                result['id_jenis'] = 1
+            else:
+                result['id_jenis'] = len(produk) + 1
+
+            if valid:
+                save = http.request.env['tubes_si.digitalprinting'].sudo().create(result)
+                pesan = result['nama'] + 'berhasil ditambahkan!'
+            else:
+                pesan = result['nama'] + 'gagal ditambahkan!'
+
+            return http.request.render('tubes_si.addproduct', {
+                'pesan': pesan
+                })
+        else:
+            return http.request.render('tubes_si.addproduct')
+            

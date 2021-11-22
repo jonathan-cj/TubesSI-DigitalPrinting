@@ -12,6 +12,7 @@
                 
                 <h2 style='text-align: center; margin-top: 20px;'>Tambah Produk Baru</h2>
                 <form id='caripesanan-form' class="addproduct-input" style="width: fit-content; height: fit-content; margin: 20px auto; padding: 20px 20px; border: 1px solid black; border-radius: 5px;" method='post' action=''>
+                    <input class='addproduct-input' type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                     <label for='nama'>Nama produk: </label><br></br>
                     <input type='text' name='nama' style='width: 500px;'/><br></br><br></br>
                     <label for='harga'>Harga: </label><br></br>
@@ -19,6 +20,11 @@
                     <label for='deskripsi'>Deskripsi: </label><br></br>
                     <input type='text' name='deskripsi' style='width: 500px; height: 100px;'></input><br></br><br></br>
                     <input type='submit' value='Tambah' class='btn' style='margin-left: 400px; border: solid black 1px; border-radius: 5px;'/>
+                    <t t-if='pesan'>
+                        <p>
+                            <t t-esc='pesan' />
+                        </p>
+                    </t>
                 </form>
                 
             </div>
