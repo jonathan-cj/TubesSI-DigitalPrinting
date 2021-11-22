@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="login" name="index">&lt;!DOCTYPE html&gt;
+    <template id="login" name="login">&lt;!DOCTYPE html&gt;
         <xpath expr="//link[@rel='stylesheet']" position="after">
             <link rel="stylesheet" href="/tubes_si/static/src/css/index.css"/>
         </xpath>
         <t t-call='website.layout'>
             <t t-set='title'>Login</t>
-                <div class="indexpage mt-5 d-flex flex-row mx-auto row"> 
-                <t t-esc="post"></t>
+            <div class="indexpage mt-5 d-flex flex-row mx-auto row"> 
 
                 <div class="col-6 flex-row">
                     <h3 class="mx-auto">Masuk sebagai admin</h3>

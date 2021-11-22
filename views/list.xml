@@ -21,6 +21,9 @@
             <div class="indexpage mt-5 container d-flex flex-column mx-auto">
             
                 <h2 class="mx-auto">Digital Printing</h2>
+                <t t-if='is_admin'>
+                    <small>I'm admin</small>
+                </t>
 
                 <div class="row justify-content-center" style="color: #EEEEEE;">
 
