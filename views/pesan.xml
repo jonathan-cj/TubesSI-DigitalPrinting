@@ -60,6 +60,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="bukti">Bukti pembayaran</label>
+                                    <p>Silakan transfer sesuai dengan total harga pesanan ke rekening BNI 43204983240973 a.n. Jamet Kuproy</p>
                                     <input type="file" class="form-control-file" name="bukti" id="bukti" />
                                 </div>
                                 <input type="submit" class='btn btn-primary' value="Pesan"/>
