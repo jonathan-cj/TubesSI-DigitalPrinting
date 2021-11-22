@@ -15,7 +15,16 @@
             <h1 style="text-align: left; margin-top: 5px;"><t t-esc='jenis.nama'></t></h1>
             <h2 style="text-align: left;"><t t-esc='jenis.harga'></t></h2>
             <p style="text-align: left; margin-top: 20px"><t t-esc='jenis.deskripsi'></t>.</p>
-            <a class="btn btn-primary" t-attf-href="/pesan/{{ jenis.id_jenis }}">Pesan</a>
+            <t t-if="is_admin">
+              <div class="row">
+                <a class="col-auto btn btn-primary" t-attf-href="/edit/{{ jenis.id_jenis }}">Edit</a>
+                <div class="col-1"></div>
+                <a class="col-auto btn btn-danger" t-attf-href="/delete/{{ jenis.id_jenis }}">Delete</a>
+              </div>
+            </t>
+            <t t-else="">
+              <a class="btn btn-primary" t-attf-href="/pesan/{{ jenis.id_jenis }}">Pesan</a>
+            </t>
           </div>
         </div>
     </t>

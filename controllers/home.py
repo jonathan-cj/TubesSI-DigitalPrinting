@@ -101,7 +101,7 @@ class HomeController(http.Controller):
             'is_admin': is_admin
         })
 
-    @http.route('/addproduct', auth='public', website=True) # mungkin authnya harus diubah jadi user?
+    @http.route('/product/add', auth='public', website=True) # mungkin authnya harus diubah jadi user?
     def addproduct(self, **post):
         global is_admin
 
@@ -123,7 +123,7 @@ class HomeController(http.Controller):
                 isDeskripsiValid = len(result['deskripsi']) != 0
                 valid = isNamaValid and isHargaValid and isDeskripsiValid
 
-                produk = (http.request.env["tubes_si.digitalprinting"])
+                produk = (http.request.env["tubes_si.digitalprinting"].sudo().search([]))
                 if len(produk) == 0:
                     result['id_jenis'] = 1
                 else:
@@ -140,5 +140,60 @@ class HomeController(http.Controller):
                     })
             else:
                 return http.request.render('tubes_si.addproduct')
+        else:
+            return '<h1>Akses ditolak!</h1>'
+    
+    @http.route('/delete/<id_jenis>', auth='public', website=True)
+    def delete(self, id_jenis, **kw):
+        global is_admin
+
+        produk = http.request.env["tubes_si.digitalprinting"].sudo().search([("id_jenis", "=", id_jenis)])
+        produk.sudo().unlink()
+        
+        all_produk = http.request.env["tubes_si.digitalprinting"].sudo().search([])
+        
+        return http.request.render('tubes_si.sale_list', {
+            'is_admin': is_admin,
+            'jenis_dp': all_produk,
+        })
+
+    @http.route('/edit/<id_jenis>', auth='public', website=True) # mungkin authnya harus diubah jadi user?
+    def editproduct(self, id_jenis, **post):
+        global is_admin
+
+        if is_admin:
+            produk = http.request.env["tubes_si.digitalprinting"].sudo().search([("id_jenis", "=", id_jenis)])
+
+            if len(post)>0:
+                result = {}
+                result['nama'] = post.get('nama')
+                result['harga'] = post.get('harga')
+                result['deskripsi'] = post.get('deskripsi')
+                error = 0
+
+                try:
+                    int(result['harga'])
+                except ValueError: 
+                    error = 1
+
+                isNamaValid = len(result['nama']) != 0
+                isHargaValid = len(result['harga']) != 0 and not error
+                isDeskripsiValid = len(result['deskripsi']) != 0
+                valid = isNamaValid and isHargaValid and isDeskripsiValid
+
+                if valid:
+                    produk.update(result)
+                    pesan = 'Berhasil menggantikan ' + result['nama']
+                else:
+                    pesan = 'Gagal menggantikan ' + result['nama'] 
+
+                return http.request.render('tubes_si.editproduct', {
+                    'pesan': pesan,
+                    'produk': produk
+                    })
+            else:
+                return http.request.render('tubes_si.editproduct', {
+                    'produk': produk
+                })
         else:
             return '<h1>Akses ditolak!</h1>'
