@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <template id="detail" name="detail">&lt;!DOCTYPE html&gt;
-    <html>
-      <head>
-        <title>Detail Produk Digital Printing</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-        <style>
-          .shadow{ 
-              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          }
-
-          .nav-item a {
-              color: #EEEEEE;
-          }
-        </style>
-      </head>
-      <body style="overflow-x: hidden;">
-        <div class="row" style="padding: 0px 20px; background-color: #1F1D36;">
-        <div class="col-6">
+    <xpath expr="//link[@rel='stylesheet']" position="after">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+      <link rel="stylesheet" href="/tubes_si/static/src/css/detail.css"/>
+    </xpath>
+    <t t-call='website.layout'>
+      <t t-set='title'>Detail Produk Digital Printing</t>
+      <div class="row" style="padding: 0px 20px; background-color: #1F1D36;">
+        <!-- <div class="col-6">
             <h2 style="color: whitesmoke;">Digital Printing</h2>
-        </div>
-        <div class="col">
+        </div> -->
+        <!-- <div class="col">
             <ul class="nav justify-content-end h-100">
             <li class="nav-item h-100">
                 <a class="nav-link active h-100" aria-current="page" href="/cekpesanan/">Cek Pesanan</a>
@@ -32,17 +23,22 @@
                 <a class="nav-link h-100" href="/pesan">Request</a>
             </li>
             </ul> 
+        </div> -->
         </div>
-        </div>
-        <div class="container shadow" style="margin-top: 100px; border: 1px solid black; border-radius: 5px; height: 300px; width: 1000px;">
-            <img class="" src="https://www.printsimpleindia.com/wp-content/uploads/2020/09/book_guide_hero_books.png" style="width: auto; height: 90%; border: 1px solid black; border-radius: 3px; margin: 15px 10px; float: left; vertical-align: baseline;"/>
+        <div class="container shadow" style="margin: 100px auto; border: 1px solid black; border-radius: 5px; height: 300px; width: 1000px;">
+            <img class="" src="https://maxipro.co.id/wp-content/uploads/2020/07/79.-Digital-Printing-Metode-Percetakan-Masa-Kini.jpg" style="width: 200px; height: 260px; border: 1px solid black; border-radius: 3px; margin: 15px 10px; float: left; vertical-align: baseline; object-fit: cover"/>
             <div class="" style="width: 50%; margin: 15px 30px;">
-            <h1 style="text-align: left; margin-top: 5px;">Produk 1</h1>
-            <h2 style="text-align: left;">Rp. 10000</h2>
-            <p style="text-align: left; margin-top: 20px">Ini Deskripsi Produk.</p>
+            <h1 style="text-align: left; margin-top: 5px;"><t t-esc='jenis.nama'></t></h1>
+            <h2 style="text-align: left;"><t t-esc='jenis.harga'></t></h2>
+            <p style="text-align: left; margin-top: 20px"><t t-esc='jenis.deskripsi'></t>.</p>
           </div>
         </div>
-      </body>
-    </html>
+    </t>
+      <!-- <head>
+        
+      </head>
+      <body style="overflow-x: hidden;">
+        
+      </body> -->
   </template>
 </odoo>

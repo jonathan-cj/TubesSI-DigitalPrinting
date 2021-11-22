@@ -52,7 +52,7 @@ class HomeController(http.Controller):
         else:
             return http.request.render('tubes_si.cekpesanan')
 
-    @http.route('/detail/<int:id_jenis>', auth='public', website=True)
+    @http.route('/detail/<id_jenis>', auth='public', website=True)
     def detail(self, id_jenis, **kw):
         result = ( http.request.env["tubes_si.digitalprinting"].sudo().search([("id_jenis", "=", id_jenis)]) )
         if len(result) == 0:
