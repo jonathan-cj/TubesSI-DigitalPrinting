@@ -6,7 +6,6 @@ class Pesanan(models.Model):
     _name = 'tubes_si.pesanan'
     _description = 'Pesanan digital printing'
 
-    id_pesanan = fields.Char(string='ID Pesanan')
     waktu_pesanan = fields.Datetime(string='Waktu Pemesanan', default=fields.Datetime.now())
     id_jenis = fields.Many2one('tubes_si.digitalprinting', string='ID Jenis')
     nama_pemesan = fields.Char(string='Nama Pemesan')
@@ -15,8 +14,8 @@ class Pesanan(models.Model):
     alamat_pemesan = fields.Char(string='Alamat Pemesan')
     jumlah_pesanan = fields.Integer(string='Jumlah Pesanan')
     deskripsi_pesanan = fields.Char(string='Deskripsi Pesanan')
-    file_pesanan = fields.Image(string='File Pesanan')
-    bukti_pembayaran = fields.Image(string='Bukti Pembayaran')
+    file_pesanan = fields.Binary("Image",help='File Pesanan')
+    bukti_pembayaran = fields.Binary("Image",help='Bukti Pembayaran')
     status = fields.Char(string='Status Pesanan')
 
     

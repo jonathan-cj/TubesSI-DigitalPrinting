@@ -1,4 +1,5 @@
 from odoo import http
+import base64
 
 ADMIN_KEY = 'admin'
 is_admin = False
@@ -29,28 +30,33 @@ class HomeController(http.Controller):
             'jenis_dp': jenis_dp,
         })
 
-    @http.route('/pesan', auth='public', website=True)
-    def pesanan(self, **post):
+    @http.route('/pesan/<id_jenis>', auth='public', website=True)
+    def pesanan(self, id_jenis, **post):
         global is_admin
         result = {}
+
+        produk = http.request.env["tubes_si.digitalprinting"].sudo().search([("id_jenis", "=", id_jenis)])
         if len(post) != 0:
             result['nama_pemesan'] = post.get('nama')
             result['alamat_pemesan'] = post.get('alamat')
-            # result['ukuran'] = post.get('ukuran')
-            result['file_pesanan'] = post.get('choose-file')
+            file_input = post.get('choose-file')
+            result['file_pesanan'] = file_input.read()
             result['deskripsi_pesanan'] = post.get('catatan')
-            result['bukti_pembayaran'] = post.get('bukti')
+            bukti_pembayaran = post.get('bukti')
+            result['bukti_pembayaran'] = bukti_pembayaran.read()
             result['status'] = 'Dalam Proses Pencetakan'
+            result['id_jenis'] = id_jenis
 
             save = http.request.env['tubes_si.pesanan'].sudo().create(result)
 
             return http.request.render('tubes_si.pesan', {
                 'is_admin': is_admin,
                 'pesanan': result, # 'pesanan' ini harus sesuai sama <t t-esc='pesanan' />
-                'save': save
+                'save': save,
+                'produk': produk
             })
         else:
-            return http.request.render('tubes_si.pesan')
+            return http.request.render('tubes_si.pesan', { 'produk': produk })
 
     @http.route('/cekpesanan', auth='public', website=True)
     def cekpesanan(self, **post):
