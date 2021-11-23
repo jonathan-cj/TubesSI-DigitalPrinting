@@ -5,8 +5,6 @@ ADMIN_KEY = 'admin'
 is_admin = None
 
 class HomeController(http.Controller):
-    
-
     @http.route('/', auth='public', website=True)
     def index(self, **post):
         global is_admin
@@ -47,7 +45,7 @@ class HomeController(http.Controller):
         global is_admin
         result = {}
 
-        produk = http.request.env["tubes_si.digitalprinting"].sudo().search([("id_jenis", "=", id_jenis)])
+        produk = http.request.env["tubes_si.digitalprinting"].sudo().search([("id", "=", id_jenis)])
         if len(post) != 0:
             result['nama_pemesan'] = post.get('nama')
             result['alamat_pemesan'] = post.get('alamat')
@@ -99,30 +97,48 @@ class HomeController(http.Controller):
             else:
                 return http.request.render('tubes_si.cekpesanan')
         else:
-            return http.request.render('tubes_si.daftarpesanan')
+            return http.request.redirect('/pesanan')
+
+    @http.route('/pesanan', auth='public', website=True)
+    def pesanan_list(self, **post):
+        global is_admin
+        if not is_admin:
+            return http.request.redirect('/daftar')
+        else:
+            daftarpesanan = ( http.request.env["tubes_si.pesanan"].sudo().search([]) )                
+            
+            return http.request.render('tubes_si.daftarpesanan', {
+                'daftarpesanan': daftarpesanan
+            })
+
 
     @http.route('/pesanan/detail/<id>', auth='public', website=True)
     def pesanan_detail(self, id, **post):
         global is_admin
-        pesanan = http.request.env["tubes_si.pesanan"].sudo().search([("id", "=", id)])
-        produk = pesanan['id_jenis']
+        if not is_admin:
+            return http.request.redirect('/daftar')
+        else:
+            updated = False
+            pesanan = http.request.env["tubes_si.pesanan"].sudo().search([("id", "=", id)])
+            produk = pesanan['id_jenis']
 
-        if (len(post) > 0):
-            result = {}
-            result['status'] = post.get('status')
+            if (len(post) > 0):
+                result = {}
+                result['status'] = post.get('status')
+                pesanan.sudo().update(result)
+                updated = True
 
-            pesanan.sudo().update(result)
-
-        return http.request.render('tubes_si.detailpesanan', {
-            'pesanan': pesanan,
-            'produk': produk,
-            'is_admin': is_admin
-        })
+            return http.request.render('tubes_si.detailpesanan', {
+                'pesanan': pesanan,
+                'produk': produk,
+                'is_admin': is_admin,
+                'updated': updated
+            })
 
     @http.route('/detail/<id_jenis>', auth='public', website=True)
     def detail(self, id_jenis, **kw):
         global is_admin
-        result = ( http.request.env["tubes_si.digitalprinting"].sudo().search([("id_jenis", "=", id_jenis)]) )
+        result = ( http.request.env["tubes_si.digitalprinting"].sudo().search([("id", "=", id_jenis)]) )
         if len(result) == 0:
             result = 'Jenis produk tidak ditemukan'
         
@@ -153,12 +169,6 @@ class HomeController(http.Controller):
                 isDeskripsiValid = len(result['deskripsi']) != 0
                 valid = isNamaValid and isHargaValid and isDeskripsiValid
 
-                produk = (http.request.env["tubes_si.digitalprinting"].sudo().search([]))
-                if len(produk) == 0:
-                    result['id_jenis'] = 1
-                else:
-                    result['id_jenis'] = len(produk) + 1
-
                 if valid:
                     save = http.request.env['tubes_si.digitalprinting'].sudo().create(result)
                     pesan = 'Berhasil menambahkan ' + result['nama']
@@ -177,7 +187,7 @@ class HomeController(http.Controller):
     def delete(self, id_jenis, **kw):
         global is_admin
 
-        produk = http.request.env["tubes_si.digitalprinting"].sudo().search([("id_jenis", "=", id_jenis)])
+        produk = http.request.env["tubes_si.digitalprinting"].sudo().search([("id", "=", id_jenis)])
         produk.sudo().unlink()
         
         all_produk = http.request.env["tubes_si.digitalprinting"].sudo().search([])
@@ -192,7 +202,7 @@ class HomeController(http.Controller):
         global is_admin
 
         if is_admin:
-            produk = http.request.env["tubes_si.digitalprinting"].sudo().search([("id_jenis", "=", id_jenis)])
+            produk = http.request.env["tubes_si.digitalprinting"].sudo().search([("id", "=", id_jenis)])
 
             if len(post)>0:
                 result = {}

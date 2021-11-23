@@ -22,7 +22,7 @@
                 <div class="row justify-content-center" style="color: #EEEEEE;">
 
                     <t t-foreach='jenis_dp' t-as='dp' class='d-flex flex-column'>
-                        <a  class="col-3 flex-row produk" t-attf-href="/detail/{{ dp.id_jenis }}" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
+                        <a  class="col-3 flex-row produk" t-attf-href="/detail/{{ dp.id }}" style="background-color: #3F3351; width: 200px; height: 300px; padding: 0px 0px; border-radius: 15px; margin: 10px 20px; overflow: hidden;">
                             <img src="https://maxipro.co.id/wp-content/uploads/2020/07/79.-Digital-Printing-Metode-Percetakan-Masa-Kini.jpg" style="max-width: 100%; max-height: 50%; width: auto; height: auto;" />
                             <h4 style="text-align: center; margin-top: 5px;"><t t-esc="dp.nama"/></h4>
                             <h5 style="text-align: center;"><t t-esc="dp.harga"/></h5>

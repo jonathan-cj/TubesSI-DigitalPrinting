@@ -13,13 +13,13 @@
             <p style="text-align: left; margin-top: 20px"><t t-esc='jenis.deskripsi'></t>.</p>
             <t t-if="is_admin">
               <div class="row">
-                <a class="col-auto btn btn-primary" t-attf-href="/edit/{{ jenis.id_jenis }}">Edit</a>
+                <a class="col-auto btn btn-primary" t-attf-href="/edit/{{ jenis.id }}">Edit</a>
                 <div class="col-1"></div>
-                <a class="col-auto btn btn-danger" t-attf-href="/delete/{{ jenis.id_jenis }}">Delete</a>
+                <a class="col-auto btn btn-danger" t-attf-href="/delete/{{ jenis.id }}">Delete</a>
               </div>
             </t>
             <t t-else="">
-              <a class="btn btn-primary" t-attf-href="/pesan/{{ jenis.id_jenis }}">Pesan</a>
+              <a class="btn btn-primary" t-attf-href="/pesan/{{ jenis.id }}">Pesan</a>
             </t>
           </div>
         </div>

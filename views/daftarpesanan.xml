@@ -7,7 +7,24 @@
 
             <div class="daftarpesananpage my-5 mx-auto container d-flex flex-column">
                 <h2>Daftar Pesanan</h2>
-                <h1><em><strong>BIKIN DI SINI ROY!</strong></em></h1>
+                
+                <t t-if="len(daftarpesanan) == 0" >
+                    <h6 class='p-5 border text-center'>Tidak ada pesanan</h6>
+                </t>
+                <t t-else="">
+                    <t t-foreach='daftarpesanan' t-as='pesanan' >
+                        <a t-attf-href="/pesanan/detail/{{ pesanan.id }}" class="pesanan-card py-1 px-3 border rounded my-2 row">
+                            <div class="left-info col-8">
+                                <div class="">Pemesan: <strong><t t-esc='pesanan.nama_pemesan' /></strong></div>
+                                <div class="">Waktu Pesanan: <t t-esc='pesanan.waktu_pesanan' /></div>
+                            </div>
+                            <div class="right-info col-4">
+                                <div class="">Status:</div>
+                                <div class=""><t t-esc='pesanan.status' /></div>
+                            </div>
+                        </a>
+                    </t>
+                </t>
             </div>
         </t>
     </template>
